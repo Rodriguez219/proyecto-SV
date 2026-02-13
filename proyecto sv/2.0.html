@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Nuestra familia ❤️</title>
+
+<style>
+body{
+    background:#FFE5FC;
+    font-family: Arial, sans-serif;
+    text-align:center;
+    margin:0;
+    padding:20px;
+    overflow-x:hidden;
+}
+
+/* ---------- FONDO ANIMADO ---------- */
+.background{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    z-index:-1;
+}
+
+.float{
+    position:absolute;
+    animation:flotar linear forwards;
+    opacity:0;
+}
+
+@keyframes flotar{
+    0%{transform:translateY(100vh) scale(0.5);opacity:0;}
+    20%{opacity:.8;}
+    80%{opacity:.8;}
+    100%{transform:translateY(-10vh) scale(1.2);opacity:0;}
+}
+
+/* ---------- GRID ---------- */
+.grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:50px;
+    max-width:1100px;
+    margin:auto;
+}
+
+@media (max-width:600px){
+    .grid{
+        grid-template-columns: 1fr;
+    }
+}
+
+.pet{
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.name{
+    font-weight:bold;
+    margin-bottom:15px;
+    font-size:28px;
+}
+
+/* ---------- CARAS ---------- */
+.face{
+    display:grid;
+    grid-template-columns: repeat(10,28px);
+    grid-template-rows: repeat(3,28px);
+    gap:2px;
+    justify-content:center;
+    margin:auto;
+}
+
+.p,.n,.w,.g,.c,.e,.y,.r,.b,.o{
+    width:28px;
+    height:28px;
+}
+
+.p{ background:transparent; }
+.o{ background:#000; }
+.w{ background:#fff; }
+.g{ background:#999; }
+.n{ background:orange; }
+.c{ background:#8b5a2b; }
+.e{ background:#4caf50; }
+.y{ background:#ffd966; }
+.r{ background:#ff7043; }
+.b{ background:#4fc3f7; }
+
+.msg{
+    display:none;
+    background:#fff;
+    padding:18px;
+    border-radius:16px;
+    margin-top:15px;
+    font-size:20px;
+    line-height:1.6;
+    max-width:400px;
+}
+
+h2{
+    font-size:40px;
+    margin-bottom:50px;
+}
+
+.heart{
+    font-size:160px;
+    cursor:pointer;
+    margin-top:40px;
+}
+
+#time{
+    display:none;
+    font-weight:bold;
+    color:#e60073;
+    font-size:22px;
+}
+
+/* ---------- EXPLOSION ---------- */
+.explosion{
+    position:fixed;
+    pointer-events:none;
+    animation:explosionAnim 1s ease-out forwards;
+}
+
+@keyframes explosionAnim{
+    0%{
+        transform:translate(0,0) scale(1);
+        opacity:1;
+    }
+    100%{
+        transform:translate(var(--x), var(--y)) scale(0.5);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background" id="background"></div>
+
+<h2>Nuestra familia 🐾</h2>
+
+<div class="grid">
+
+<!-- DRACO -->
+<div class="pet" onclick="toggle('draco', event)">
+<div class="name">Draco</div>
+<div class="face">
+<div class="p"></div><div class="p"></div><div class="w"></div><div class="w"></div><div class="p"></div><div class="p"></div><div class="w"></div><div class="w"></div><div class="p"></div><div class="p"></div>
+<div class="p"></div><div class="w"></div><div class="w"></div><div class="w"></div><div class="w"></div><div class="w"></div><div class="w"></div><div class="w"></div><div class="w"></div><div class="p"></div>
+<div class="w"></div><div class="w"></div><div class="e"></div><div class="o"></div><div class="w"></div><div class="w"></div><div class="o"></div><div class="e"></div><div class="w"></div><div class="w"></div>
+</div>
+<div id="draco" class="msg">Hola mamá Sole 🐾
+Soy Draco.
+Si, lo se, acabo de comer.
+Pero ya sabes, siempre tengo hambre.
+Mi pancita es un agujero negro y tú eres la única que puede salvarme 🍽️
+Prometo amarte mucho, manipular un poquito a papa y gritarte cada 5 minutos por comida 💛</div>
+</div>
+
+
+<!-- TONNY -->
+<div class="pet" onclick="toggle('tonny', event)">
+<div class="name">Tonny</div>
+<div class="face">
+<div class="p"></div><div class="p"></div><div class="g"></div><div class="g"></div><div class="p"></div><div class="p"></div><div class="g"></div><div class="g"></div><div class="p"></div><div class="p"></div>
+<div class="p"></div><div class="g"></div><div class="g"></div><div class="g"></div><div class="g"></div><div class="g"></div><div class="g"></div><div class="g"></div><div class="g"></div><div class="p"></div>
+<div class="g"></div><div class="g"></div><div class="e"></div><div class="o"></div><div class="g"></div><div class="g"></div><div class="o"></div><div class="e"></div><div class="g"></div><div class="g"></div>
+</div>
+<div id="tonny" class="msg">Sole, soy Tonny 😼
+Yo no empiezo peleas, solo las termino.
+A veces les pego, sí, pero es mi forma de decir “aquí mando yo”.
+Aunque sea rudo, me gusta que me mires con cariño.
+Yo sé que igual me amas 💙</div>
+</div>
+
+<!-- TADEO -->
+<div class="pet" onclick="toggle('tadeo', event)">
+<div class="name">Tadeo</div>
+<div class="face">
+<div class="p"></div><div class="p"></div><div class="n"></div><div class="n"></div><div class="p"></div><div class="p"></div><div class="n"></div><div class="n"></div><div class="p"></div><div class="p"></div>
+<div class="p"></div><div class="n"></div><div class="n"></div><div class="n"></div><div class="n"></div><div class="n"></div><div class="n"></div><div class="n"></div><div class="n"></div><div class="p"></div>
+<div class="n"></div><div class="n"></div><div class="e"></div><div class="o"></div><div class="n"></div><div class="n"></div><div class="o"></div><div class="e"></div><div class="n"></div><div class="n"></div>
+</div>
+<div id="tadeo" class="msg">Hola Sole… Soy Tadeo.
+No me mires tan fuerte, por favor 😿
+A veces me escondo tanto que ni yo sé dónde estoy.
+Todo me da miedo, pero tu voz no.
+Aunque no siempre me veas, siempre estoy cerquita de ti 🍊</div>
+</div>
+
+<!-- BELLATRIX -->
+<div class="pet" onclick="toggle('bella', event)">
+<div class="name">Bellatrix</div>
+<div class="face">
+<div class="p"></div><div class="p"></div><div class="o"></div><div class="o"></div><div class="p"></div><div class="p"></div><div class="o"></div><div class="o"></div><div class="p"></div><div class="p"></div>
+<div class="p"></div><div class="o"></div><div class="o"></div><div class="o"></div><div class="o"></div><div class="o"></div><div class="o"></div><div class="o"></div><div class="o"></div><div class="p"></div>
+<div class="o"></div><div class="o"></div><div class="y"></div><div class="o"></div><div class="o"></div><div class="o"></div><div class="o"></div><div class="y"></div><div class="o"></div><div class="o"></div>
+</div>
+<div id="bella" class="msg">Sole… miau 💋
+Soy Bellatrix. ¿Escuchaste mi maullido?
+Sí, lo sé… es sexy. Me encanta cuando me rascan y me acarician así suavecito.
+Sigue… no pares 😽🖤</div>
+</div>
+
+<!-- BAGHEERA -->
+<div class="pet" onclick="toggle('bagheera', event)">
+<div class="name">Bagheera</div>
+<div class="face">
+<div class="p"></div><div class="p"></div><div class="c"></div><div class="o"></div><div class="p"></div><div class="p"></div><div class="o"></div><div class="c"></div><div class="p"></div><div class="p"></div>
+<div class="p"></div><div class="o"></div><div class="c"></div><div class="o"></div><div class="o"></div><div class="o"></div><div class="c"></div><div class="o"></div><div class="o"></div><div class="p"></div>
+<div class="o"></div><div class="c"></div><div class="y"></div><div class="o"></div><div class="o"></div><div class="o"></div><div class="o"></div><div class="y"></div><div class="c"></div><div class="o"></div>
+</div>
+<div id="bagheera" class="msg">Hola Sole 🤍
+Soy Bagheera. Si me llamas, voy corriendo como perrito.
+Si pasas por encima de mí, no me muevo.
+Confío en ti con todo mi corazón.
+Yo cuido a todos, porque soy la mamá de esta familia 🐾</div>
+</div>
+
+<!-- EMMA -->
+<div class="pet" onclick="toggle('emma', event)">
+<div class="name">Emma</div>
+<div class="face">
+<div class="p"></div><div class="p"></div><div class="n"></div><div class="n"></div><div class="p"></div><div class="p"></div><div class="n"></div><div class="n"></div><div class="p"></div><div class="p"></div>
+<div class="p"></div><div class="n"></div><div class="w"></div><div class="n"></div><div class="n"></div><div class="n"></div><div class="w"></div><div class="n"></div><div class="n"></div><div class="p"></div>
+<div class="n"></div><div class="n"></div><div class="e"></div><div class="o"></div><div class="w"></div><div class="w"></div><div class="o"></div><div class="e"></div><div class="n"></div><div class="n"></div>
+</div>
+<div id="emma" class="msg">Sole… soy Emma 👑
+Desde aquí arriba los veo a todos.
+Este mueble es mío.
+Si alguien se acerca cuando no quiero, le pego.
+No es enojo, es autoridad. Arrodillense ante mi🤍</div>
+</div>
+
+<!-- ANTONIA -->
+<div class="pet" onclick="toggle('antonia', event)">
+<div class="name">Antonia</div>
+<div class="face">
+<div class="p"></div><div class="p"></div><div class="y"></div><div class="y"></div><div class="p"></div><div class="p"></div><div class="y"></div><div class="y"></div><div class="p"></div><div class="p"></div>
+<div class="p"></div><div class="y"></div><div class="y"></div><div class="y"></div><div class="y"></div><div class="y"></div><div class="y"></div><div class="y"></div><div class="y"></div><div class="p"></div>
+<div class="y"></div><div class="y"></div><div class="o"></div><div class="y"></div><div class="y"></div><div class="y"></div><div class="y"></div><div class="o"></div><div class="y"></div><div class="y"></div>
+</div>
+<div id="antonia" class="msg">Soleeeee 🐹✨
+Soy Antonia. No me dan miedo los gatos, ni nada.
+Me encanta comer, correr, comer, saltar y comer otra vez.
+Estoy llena de energía y amor… y hambre. Mucha hambre 💛</div>
+</div>
+
+<!-- SOVA -->
+<div class="pet" onclick="toggle('sova', event)">
+<div class="name">Sova</div>
+<div class="face">
+<div class="p"></div><div class="p"></div><div class="r"></div><div class="r"></div><div class="p"></div><div class="p"></div><div class="r"></div><div class="r"></div><div class="p"></div><div class="p"></div>
+<div class="p"></div><div class="r"></div><div class="r"></div><div class="r"></div><div class="r"></div><div class="r"></div><div class="r"></div><div class="r"></div><div class="r"></div><div class="p"></div>
+<!-- ojo izquierdo normal -->
+<div class="r"></div><div class="r"></div><div class="o"></div><div class="r"></div>
+<!-- ojo derecho blanco -->
+<div class="r"></div><div class="r"></div><div class="w"></div><div class="r"></div><div class="r"></div><div class="r"></div>
+</div>
+<div id="sova" class="msg">Hola Sole 🧡
+Soy Sova.
+Sí, nací con un solo ojito…
+pero veo más que muchos.
+Tengo mi pecera propia porque soy grande y ensucio horrible 😅
+Si no limpias, hago pantano.
+Perdón… así soy yo 💦</div>
+</div>
+
+<!-- PECES -->
+<div class="pet" onclick="toggle('guppy', event)">
+<div class="name">Nuestros peces</div>
+<div class="face">
+<div class="p"></div><div class="p"></div><div class="b"></div><div class="b"></div><div class="p"></div><div class="p"></div><div class="b"></div><div class="b"></div><div class="p"></div><div class="p"></div>
+<div class="p"></div><div class="b"></div><div class="b"></div><div class="b"></div><div class="b"></div><div class="b"></div><div class="b"></div><div class="b"></div><div class="b"></div><div class="p"></div>
+<div class="b"></div><div class="b"></div><div class="o"></div><div class="b"></div><div class="b"></div><div class="b"></div><div class="o"></div><div class="b"></div><div class="b"></div><div class="b"></div>
+</div>
+<div id="guppy" class="msg">Hola Sole 💙
+Somos los peces.
+Guppys, lochas, coridoras…
+Nadamos juntos en nuestro pequeño mundo.
+Siempre estamos aquí, moviéndonos en silencio,
+acompañándote.</div>
+</div>
+
+<!-- NEMYS -->
+<div class="pet" onclick="toggle('nemys', event)">
+<div class="name">Nemys</div>
+<div class="face">
+<div class="p"></div><div class="p"></div><div class="g"></div><div class="g"></div><div class="p"></div><div class="p"></div><div class="g"></div><div class="g"></div><div class="p"></div><div class="p"></div>
+
+<div class="p"></div><div class="g"></div><div class="y"></div><div class="g"></div><div class="g"></div><div class="g"></div><div class="y"></div><div class="g"></div><div class="g"></div><div class="p"></div>
+
+<div class="g"></div><div class="y"></div><div class="o"></div><div class="g"></div><div class="g"></div><div class="g"></div><div class="o"></div><div class="y"></div><div class="g"></div><div class="g"></div>
+</div>
+<div id="nemys" class="msg">Hola Sole… 🐢
+Soy Nemys.
+Si te acercas, me voy a una esquina.
+No es que no te quiera, es que soy tímida.
+Me gusta mirarte desde lejos, con calma 💛</div>
+</div>
+
+<!-- TEMPORAL -->
+<div class="pet" onclick="toggle('temporal', event)">
+<div class="name">Temporal</div>
+<div class="face">
+<div class="p"></div><div class="p"></div><div class="g"></div><div class="g"></div><div class="p"></div><div class="p"></div><div class="g"></div><div class="g"></div><div class="p"></div><div class="p"></div>
+
+<div class="p"></div><div class="g"></div><div class="y"></div><div class="g"></div><div class="g"></div><div class="g"></div><div class="y"></div><div class="g"></div><div class="g"></div><div class="p"></div>
+
+<div class="g"></div><div class="y"></div><div class="o"></div><div class="g"></div><div class="g"></div><div class="g"></div><div class="o"></div><div class="y"></div><div class="g"></div><div class="g"></div>
+</div>
+<div id="temporal" class="msg">Soleeee 🐢✨
+Soy Temporal.
+Me acerco al vidrio, muevo la cabeza, te miro fijo…
+porque sé que así me das comida.
+Y siempre funciona 😌</div>
+</div>
+
+</div>
+
+
+<div style="margin-top:20px;background:#fff;display:inline-block;padding:10px 18px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,.15);font-size:14px;">
+⏰ Juntos oficialmente desde<br>
+<strong>22 de julio de 2024 💍</strong>
+</div>
+
+<div class="heart" onclick="toggle('time', event)">❤️</div>
+<div id="time"></div>
+
+
+<script>
+function toggle(id, event){
+    const el = document.getElementById(id);
+    el.style.display = el.style.display === "block" ? "none" : "block";
+    explosion(event.clientX, event.clientY);
+}
+const start = new Date("2024-07-22T00:00:00");
+
+setInterval(()=>{
+    const now = new Date();
+    let d = now - start;
+    let s = Math.floor(d/1000)%60;
+    let m = Math.floor(d/60000)%60;
+    let h = Math.floor(d/3600000)%24;
+    let days = Math.floor(d/86400000);
+
+    document.getElementById("time").innerHTML =
+    `⏳ Tiempo juntos:<br>${days} días ${h} horas<br>${m} minutos ${s} segundos`;
+},1000);
+
+
+/* -------- FONDO ANIMADO -------- */
+
+const bg = document.getElementById("background");
+
+function crearElemento(){
+    const el = document.createElement("div");
+    el.classList.add("float");
+
+    const simbolos = ["🐈‍⬛","🐱","💗","😍","🐹","🐈","🐟","💞","🎉","🐾","😻","❣️","🐦‍🔥","🐠","🐢","𝓣𝓔 𝓐𝓜𝓞","𝓢𝓞𝓛𝓔 𝓨 𝓙𝓤𝓝𝓘𝓞𝓡","𝓣𝓔 𝓐𝓓𝓞𝓡𝓞","𝓜𝓘 𝓢𝓞𝓛𝓔"];
+    el.innerHTML = simbolos[Math.floor(Math.random()*simbolos.length)];
+
+    el.style.left = Math.random()*100 + "vw";
+    el.style.fontSize = (14 + Math.random()*20) + "px";
+    el.style.animationDuration = (6 + Math.random()*6) + "s";
+
+    bg.appendChild(el);
+
+    setTimeout(()=>{
+        el.remove();
+    },15000);
+}
+
+setInterval(crearElemento, 150);
+
+
+function explosion(x, y){
+    const simbolos = ["🐈‍⬛","🐱","💗","😍","🐹","🐈","🐟","💖","✨"];
+    for(let i=0;i<30;i++){
+        const el=document.createElement("div");
+        el.classList.add("explosion");
+        el.innerHTML=simbolos[Math.floor(Math.random()*simbolos.length)];
+        el.style.left=x+"px";
+        el.style.top=y+"px";
+        el.style.fontSize=(20+Math.random()*25)+"px";
+        const angle=Math.random()*2*Math.PI;
+        const distance=100+Math.random()*100;
+        el.style.setProperty('--x',Math.cos(angle)*distance+"px");
+        el.style.setProperty('--y',Math.sin(angle)*distance+"px");
+        document.body.appendChild(el);
+        setTimeout(()=>el.remove(),1000);
+    }
+}
+</script>
+
+</body>
+</html>
