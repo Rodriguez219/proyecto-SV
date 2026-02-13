@@ -333,6 +333,26 @@ h2{
 }
 
 
+#juegoContainer{
+    text-align:center;
+    margin-top:40px;
+}
+
+#opciones button{
+    display:block;
+    margin:10px auto;
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    background:#ff4da6;
+    color:white;
+    cursor:pointer;
+}
+
+#opciones button:hover{
+    background:#e60073;
+}
+
 
 </style>
 </head>
@@ -987,10 +1007,39 @@ function mostrarAnimacionCorazon(){
 
 
 const mensajesDraco = [
-    "🐾 Sole, él te ama mucho",
-    "🐶 Más croquetas por favor",
-    "💖 Hueles a felicidad",
-    "🐾 Soy testigo del amor"
+    "💋 Vale por un beso",
+    "🌹 Eres mi lugar favorito",
+    "💖 Siempre te elegiría a ti",
+    "✨ Eres mi vida entera",
+    "❣️ Te amo bb",
+    "❤️ Te adoro chiquita bella",
+    "😍 Mi niña hermosa",
+    "😘 Juntos por siempre",
+    "❤️ Eres el amor de mi vida",
+    "🥰 Eres la persona mas valiosa en mi vida",
+    "🩷 Eres la  persona mas importante de mi vida",
+    "💞 Te amo con todo mi ser",
+    "💌 Mi renegona", 
+  "💕 Mi chiquita poderosa",
+    "😘 Mi chiquita hermosa",
+    "🩷 Mi Sole preciosa",
+    "🔥 Mi renegona favorita",
+    "🥺 Mi pequeña gigante",
+    "🌸 La más hermosa del mundo",
+    "💞 Mi vida bonita",
+    "😍 Dueña de mis besos",
+    "🫶 Mi persona favorita",
+    "💓 Mi pedacito de cielo",
+    "🌹 Mi bajita perfecta",
+    "💋 Mi caprichito lindo",
+    "✨ Mi razón diaria",
+    "🥰 Mi consentida hermosa",
+    "😚 Mi ternurita enojona",
+    "❤️ La reina de mi vida",
+    "😈 Mi renegona peligrosa",
+    "💫 Mi destino favorito",
+    "😍 La más linda de todas",
+    "💕 Siempre tú, Sole"
 ];
 
 function hablarDraco(){
@@ -1037,12 +1086,140 @@ const sorpresas = [
     "🥰 Eres la persona mas valiosa en mi vida",
     "🩷 Eres la  persona mas importante de mi vida",
     "💞 Te amo con todo mi ser",
-    "💌 Mi renegona"
+    "💌 Mi renegona", 
+  "💕 Mi chiquita poderosa",
+    "😘 Mi chiquita hermosa",
+    "🩷 Mi Sole preciosa",
+    "🔥 Mi renegona favorita",
+    "🥺 Mi pequeña gigante",
+    "🌸 La más hermosa del mundo",
+    "💞 Mi vida bonita",
+    "😍 Dueña de mis besos",
+    "🫶 Mi persona favorita",
+    "💓 Mi pedacito de cielo",
+    "🌹 Mi bajita perfecta",
+    "💋 Mi caprichito lindo",
+    "✨ Mi razón diaria",
+    "🥰 Mi consentida hermosa",
+    "😚 Mi ternurita enojona",
+    "❤️ La reina de mi vida",
+    "😈 Mi renegona peligrosa",
+    "💫 Mi destino favorito",
+    "😍 La más linda de todas",
+    "💕 Siempre tú, Sole"
 ];
 
 function sorpresa(){
     let mensaje = sorpresas[Math.floor(Math.random()*sorpresas.length)];
     document.getElementById("mensajeSorpresa").innerText = mensaje;
+}
+
+
+const preguntas = [
+    {
+        pregunta: "¿Cuál es mi comida favorita?",
+        opciones: ["Pizza", "Hamburguesa", "Tacos"],
+        correcta: 0
+    },
+    {
+        pregunta: "¿Quién ama más?",
+        opciones: ["Tú", "Yo", "Los dos igual"],
+        correcta: 2
+    },
+    {
+        pregunta: "¿Qué me pone más feliz?",
+        opciones: ["Dormir", "Estar contigo", "Videojuegos"],
+        correcta: 1
+    },
+    {
+        pregunta: "¿Cuál es mi color favorito?",
+        opciones: ["Azul", "Rojo", "Negro"],
+        correcta: 0
+    },
+    {
+        pregunta: "¿Qué amo de ti?",
+        opciones: ["Tu sonrisa", "Tu mirada", "Todo"],
+        correcta: 2
+    },
+    {
+        pregunta: "¿Qué haría por ti?",
+        opciones: ["Nada", "Casi todo", "Todo"],
+        correcta: 2
+    },
+    {
+        pregunta: "¿Qué eres para mí?",
+        opciones: ["Mi novia", "Mi persona favorita", "Mi todo"],
+        correcta: 2
+    },
+    {
+        pregunta: "¿Dónde me gusta estar?",
+        opciones: ["En casa", "Contigo", "En la calle"],
+        correcta: 1
+    },
+    {
+        pregunta: "¿Qué pienso cuando te veo?",
+        opciones: ["Qué suerte tengo", "Qué hermosa", "Ambas"],
+        correcta: 2
+    },
+    {
+        pregunta: "¿Te elegiría otra vez?",
+        opciones: ["Sí", "Siempre", "Mil veces sí"],
+        correcta: 2
+    }
+];
+
+let indiceActual = 0;
+let puntaje = 0;
+
+function iniciarJuego(){
+    document.getElementById("juego").style.display = "block";
+    indiceActual = 0;
+    puntaje = 0;
+    mostrarPregunta();
+}
+
+function mostrarPregunta(){
+    let preguntaObj = preguntas[indiceActual];
+    document.getElementById("pregunta").innerText = preguntaObj.pregunta;
+
+    let opcionesHTML = "";
+    preguntaObj.opciones.forEach((opcion, index) => {
+        opcionesHTML += `<button onclick="responder(${index})">${opcion}</button>`;
+    });
+
+    document.getElementById("opciones").innerHTML = opcionesHTML;
+}
+
+function responder(opcionSeleccionada){
+    if(opcionSeleccionada === preguntas[indiceActual].correcta){
+        puntaje++;
+    }
+
+    indiceActual++;
+
+    if(indiceActual < preguntas.length){
+        mostrarPregunta();
+    } else {
+        mostrarResultado();
+    }
+}
+
+function mostrarResultado(){
+    document.getElementById("pregunta").innerText = "💖 Resultado final 💖";
+    document.getElementById("opciones").innerHTML = "";
+
+    let mensaje = "";
+
+    if(puntaje <= 5){
+        mensaje = "😜 Necesitas más citas conmigo";
+    } else if(puntaje <= 8){
+        mensaje = "🥰 Me conoces bastante bien";
+    } else {
+        mensaje = "💍 Perfecta para mí, siempre lo has sido";
+    }
+
+    document.getElementById("resultadoFinal").innerText =
+        "Obtuviste " + puntaje + " de 10.\n" + mensaje;
 }
 
 
@@ -1172,5 +1349,18 @@ align-items:center;
 
 <div id="dracoMensaje"></div>
 <script src="script.js"></script>
+
+
+<div id="juegoContainer">
+    <button onclick="iniciarJuego()">🎮 ¿Cuánto me conoces?</button>
+
+    <div id="juego" style="display:none;">
+        <h2 id="pregunta"></h2>
+        <div id="opciones"></div>
+        <p id="resultadoFinal"></p>
+    </div>
+</div>
+
+
 </body>
 </html>
