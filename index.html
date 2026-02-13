@@ -240,12 +240,117 @@ h2{
 }
 
 
+#bloqueo{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    background:linear-gradient(135deg,#ff4da6,#a66cff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.pantallaAcceso{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 20px rgba(0,0,0,0.2);
+}
+
+.pantallaAcceso input{
+    padding:10px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    margin:10px 0;
+    width:200px;
+}
+
+.pantallaAcceso button{
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    background:#ff4da6;
+    color:white;
+    cursor:pointer;
+}
+
+#errorClave{
+    color:red;
+    font-size:14px;
+}
+
+
+
+#animacionCorazon{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    background:white;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+}
+
+#animacionCorazon svg{
+    width:200px;
+    height:200px;
+}
+
+#corazonPath{
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    animation: dibujar 2s ease forwards;
+}
+
+@keyframes dibujar{
+    to{
+        stroke-dashoffset:0;
+    }
+}
+
+#dracoMensaje{
+    position:fixed;
+    bottom:20px;
+    left:20px;
+    background:white;
+    padding:10px 15px;
+    border-radius:15px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+    display:none;
+}
+
+
+#mensajeSorpresa{
+    margin-top:10px;
+    font-weight:bold;
+    color:#ff4da6;
+}
+
 
 
 </style>
 </head>
 
 <body>
+
+<div id="bloqueo">
+    <div class="pantallaAcceso">
+        <h2>🔐 Acceso exclusivo para Sole</h2>
+	<h3>¿Dia y mes de nuestro aniversario?</h3>
+        <input type="password" id="claveInput" placeholder="Ejem: Nuestra fecha ❤️">
+        <button onclick="verificarClave()">Entrar</button>
+        <p id="errorClave"></p>
+    </div>
+</div>
+
+
 
 <div id="pantallaInicio" style="
 position:fixed;
@@ -296,6 +401,8 @@ transition:opacity 0.6s ease;
 </div>
 
 
+<button onclick="sorpresa()">🎁 💓</button>
+<div id="mensajeSorpresa"></div>
 
 
 
@@ -852,6 +959,76 @@ function cambiarFoto(direccion){
 }
 
 
+function verificarClave(){
+    let clave = document.getElementById("claveInput").value;
+    let correcta = "22 de julio"; // tu clave
+
+    if(clave === correcta){
+        mostrarAnimacionCorazon();
+    } else {
+        document.getElementById("errorClave").innerText = "Clave incorrecta 😜";
+    }
+}
+
+
+function mostrarAnimacionCorazon(){
+    let anim = document.getElementById("animacionCorazon");
+    anim.style.display = "flex";
+
+    setTimeout(() => {
+        anim.style.display = "none";
+        document.getElementById("bloqueo").style.display = "none";
+
+        // 👇 Ahora Draco empieza a hablar
+        setInterval(hablarDraco, 10000);
+
+    }, 2500);
+}
+
+
+
+const mensajesDraco = [
+    "🐾 Sole, él te ama mucho",
+    "🐶 Más croquetas por favor",
+    "💖 Hueles a felicidad",
+    "🐾 Soy testigo del amor"
+];
+
+function hablarDraco(){
+    let caja = document.getElementById("dracoMensaje");
+    let mensaje = mensajesDraco[Math.floor(Math.random()*mensajesDraco.length)];
+
+    caja.innerText = mensaje;
+    caja.style.display = "block";
+
+    setTimeout(()=>{
+        caja.style.display = "none";
+    }, 4000);
+}
+
+
+
+const sorpresas = [
+    "💋 Vale por un beso",
+    "🌹 Eres mi lugar favorito",
+    "💖 Siempre te elegiría a ti",
+    "✨ Eres mi vida entera",
+    "❣️ Te amo bb",
+    "❤️ Te adoro chiquita bella",
+    "😍 Mi niña hermosa",
+    "😘 Juntos por siempre",
+    "❤️ Eres el amor de mi vida",
+    "🥰 Eres la persona mas valiosa en mi vida",
+    "🩷 Eres la  persona mas importante de mi vida",
+    "💞 Te amo con todo mi ser",
+    "💌 Mi renegona"
+];
+
+function sorpresa(){
+    let mensaje = sorpresas[Math.floor(Math.random()*sorpresas.length)];
+    document.getElementById("mensajeSorpresa").innerText = mensaje;
+}
+
 
 
 </script>
@@ -965,9 +1142,19 @@ align-items:center;
     ">
 </div>
 
+<div id="animacionCorazon">
+    <svg viewBox="0 0 200 200">
+        <path id="corazonPath"
+              d="M100 170
+                 C 20 110, 20 40, 100 70
+                 C 180 40, 180 110, 100 170"
+              fill="transparent"
+              stroke="#ff4da6"
+              stroke-width="4"/>
+    </svg>
+</div>
 
-
-
-
+<div id="dracoMensaje"></div>
+<script src="script.js"></script>
 </body>
 </html>
