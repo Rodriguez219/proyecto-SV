@@ -317,13 +317,12 @@ h2{
 
 #dracoMensaje{
     position:fixed;
-    bottom:20px;
-    left:20px;
     background:white;
     padding:10px 15px;
     border-radius:15px;
     box-shadow:0 0 10px rgba(0,0,0,0.2);
     display:none;
+    z-index:9999;
 }
 
 
@@ -1001,10 +1000,27 @@ function hablarDraco(){
     caja.innerText = mensaje;
     caja.style.display = "block";
 
+    // Tamaño de ventana
+    let anchoVentana = window.innerWidth;
+    let altoVentana = window.innerHeight;
+
+    // Tamaño aproximado del mensaje
+    let anchoCaja = 200;
+    let altoCaja = 60;
+
+    // Posición aleatoria
+    let x = Math.random() * (anchoVentana - anchoCaja);
+    let y = Math.random() * (altoVentana - altoCaja);
+
+    caja.style.left = x + "px";
+    caja.style.top = y + "px";
+
     setTimeout(()=>{
         caja.style.display = "none";
     }, 4000);
 }
+
+
 
 
 
