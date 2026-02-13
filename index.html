@@ -713,7 +713,6 @@ setInterval(()=>{
 },1000);
 
 
-/* -------- FONDO ANIMADO -------- */
 
 const bg = document.getElementById("background");
 
@@ -778,7 +777,6 @@ function explosion(x, y){
 
 
 
-<!-- CONTADOR 0/11 -->
 let abiertas = new Set();
 
 const totalMascotas = 11;
@@ -799,7 +797,6 @@ if(abiertas.size === totalMascotas && !logroActivado){
 }
 
 
-<!-- LLUVIA DE CORAZONES -->
 function lluviaCorazones(){
 
     for(let i=0;i<40;i++){
@@ -874,8 +871,6 @@ function mostrarCarta(){
 
 
 
-
-<!--X DE CERRAR -->
 function cerrarCarta(){
 
     const carta = document.getElementById("carta");
@@ -1168,18 +1163,18 @@ const preguntas = [
     }
 ];
 
-let indiceActual = 0;
+let indicePragunta= 0;
 let puntaje = 0;
 
 function iniciarJuego(){
     document.getElementById("juego").style.display = "block";
-    indiceActual = 0;
+    indicePregunta = 0;
     puntaje = 0;
     mostrarPregunta();
 }
 
 function mostrarPregunta(){
-    let preguntaObj = preguntas[indiceActual];
+    let preguntaObj = preguntas[indicePregunta];
     document.getElementById("pregunta").innerText = preguntaObj.pregunta;
 
     let opcionesHTML = "";
@@ -1191,18 +1186,19 @@ function mostrarPregunta(){
 }
 
 function responder(opcionSeleccionada){
-    if(opcionSeleccionada === preguntas[indiceActual].correcta){
+    if(opcionSeleccionada === preguntas[indicePregunta].correcta){
         puntaje++;
     }
 
-    indiceActual++;
+    indicePregunta++;
 
-    if(indiceActual < preguntas.length){
+    if(indicePregunta < preguntas.length){
         mostrarPregunta();
     } else {
         mostrarResultado();
     }
 }
+
 
 function mostrarResultado(){
     document.getElementById("pregunta").innerText = "💖 Resultado final 💖";
@@ -1295,7 +1291,6 @@ align-items:center;
 ">
 
 
-    <!-- Cerrar -->
     <div onclick="cerrarVisor()" style="
     position:absolute;
     top:20px;
@@ -1348,7 +1343,6 @@ align-items:center;
 </div>
 
 <div id="dracoMensaje"></div>
-<script src="script.js"></script>
 
 
 <div id="juegoContainer">
