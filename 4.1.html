@@ -354,8 +354,6 @@ h2{
 }
 
 
-
-
 </style>
 </head>
 
@@ -363,7 +361,7 @@ h2{
 
 <div id="bloqueo">
     <div class="pantallaAcceso">
-        <h2>🔐 Acceso exclusivo para Sole ❤️</h2>
+        <h2>🔐 Acceso exclusivo para Sole</h2>
 	<h3>¿Dia y mes de nuestro aniversario?</h3>
         <input type="password" id="claveInput" placeholder="Ejem: Nuestra fecha ❤️">
         <button onclick="verificarClave()">Entrar</button>
@@ -389,7 +387,7 @@ transition:opacity 0.6s ease;
 ">
 
     <h1 style="font-family:cursive;color:#ff4da6;">
-        Nuestra hermosa familia 💖
+        Nuestra pequeña familia 💖
     </h1>
 
     <button onclick="iniciarExperiencia()" style="
@@ -404,7 +402,7 @@ transition:opacity 0.6s ease;
         box-shadow:0 0 15px rgba(0,0,0,0.2);
         transition:transform 0.2s ease;
     ">
-        Toca aquí mi amor ❤️
+        Toca aquí Sole ❤️
     </button>
 
 </div>
@@ -705,7 +703,7 @@ color:white;
 cursor:pointer;
 z-index:1000;
 ">
-📷 Fotitos
+📷 Recuerdos
 </button>
 
 
@@ -859,7 +857,7 @@ function lluviaCorazones(){
 
 function mostrarCarta(){
 
-    const mensaje = "Gracias por cada día juntos 💖\nTe amo cada dias mas y mas.\nQuiero estar contigo por siempre y para siempre.\nTe amo infinitamente mi amor. ✨";
+    const mensaje = "Gracias por cada día juntos 💖\nCada mascota guarda un recuerdo.\nY todos esos recuerdos son contigo.\nTe amo infinito. ✨";
 
     const carta = document.getElementById("carta");
     const texto = document.getElementById("textoCarta");
@@ -1002,7 +1000,7 @@ function verificarClave(){
     if(clave === correcta){
         mostrarAnimacionCorazon();
     } else {
-        document.getElementById("errorClave").innerText = "Clave incorrecta, ya no me amas? 😭";
+        document.getElementById("errorClave").innerText = "Clave incorrecta 😜";
     }
 }
 
@@ -1135,23 +1133,23 @@ function sorpresa(){
 const preguntas = [
     {
         pregunta: "¿Cuál es mi comida favorita?",
-        opciones: ["Lomo Saltado", "Ceviche", "Lentejas"],
-        correcta: 1
-    },
-    {
-        pregunta: "¿Quién ama más?",
-        opciones: ["Junior", "Sole", "Los dos igual"],
+        opciones: ["Pizza", "Hamburguesa", "Tacos"],
         correcta: 0
     },
     {
+        pregunta: "¿Quién ama más?",
+        opciones: ["Tú", "Yo", "Los dos igual"],
+        correcta: 2
+    },
+    {
         pregunta: "¿Qué me pone más feliz?",
-        opciones: ["Lavar", "Estar contigo", "Hacer ejercicio"],
+        opciones: ["Dormir", "Estar contigo", "Videojuegos"],
         correcta: 1
     },
     {
         pregunta: "¿Cuál es mi color favorito?",
-        opciones: ["Negro", "Rojo", "Verde"],
-        correcta: 2
+        opciones: ["Azul", "Rojo", "Negro"],
+        correcta: 0
     },
     {
         pregunta: "¿Qué amo de ti?",
@@ -1159,27 +1157,27 @@ const preguntas = [
         correcta: 2
     },
     {
-        pregunta: "¿Pasatiempo favorito?",
-        opciones: ["Voley", "Trotar", "Videojuegos"],
+        pregunta: "¿Qué haría por ti?",
+        opciones: ["Nada", "Casi todo", "Todo"],
         correcta: 2
     },
     {
-        pregunta: "¿Una comida que antes no me gustaba pero ahora si?",
-        opciones: ["Seco de carne", "Lentejas", "Quinua"],
-        correcta: 1
-    },
-    {
-        pregunta: "¿Lugar donde me gustaria viajar?",
-        opciones: ["Huancayo", "Venezuela", "Japon"],
+        pregunta: "¿Qué eres para mí?",
+        opciones: ["Mi novia", "Mi persona favorita", "Mi todo"],
         correcta: 2
     },
     {
-        pregunta: "¿En que trabajo?",
-        opciones: ["De puta", "Sistemas", "Prostibulo"],
+        pregunta: "¿Dónde me gusta estar?",
+        opciones: ["En casa", "Contigo", "En la calle"],
         correcta: 1
     },
     {
-        pregunta: "¿Te amo?",
+        pregunta: "¿Qué pienso cuando te veo?",
+        opciones: ["Qué suerte tengo", "Qué hermosa", "Ambas"],
+        correcta: 2
+    },
+    {
+        pregunta: "¿Te elegiría otra vez?",
         opciones: ["Sí", "Siempre", "Mil veces sí"],
         correcta: 2
     }
@@ -1229,11 +1227,11 @@ function mostrarResultado(){
     let mensaje = "";
 
     if(puntaje <= 5){
-        mensaje = "😜 Ya veo, solo estas por mi cuerpo y dinero";
-    } else if(puntaje <= 9){
+        mensaje = "😜 Necesitas más citas conmigo";
+    } else if(puntaje <= 8){
         mensaje = "🥰 Me conoces bastante bien";
     } else {
-        mensaje = "💍A la primera, porque eres la mejor, Te amo mi loquita ";
+        mensaje = "💍 Perfecta para mí, siempre lo has sido";
     }
 
     document.getElementById("resultadoFinal").innerText =
@@ -1243,13 +1241,13 @@ function mostrarResultado(){
 
 let dracoStats = {
     vida: 100,
-    hambre: 500,
+    hambre: 100,
     diversion: 100,
     energia: 100
 };
 
 function actualizarStats(){
-    dracoStats.hambre -= 25;
+    dracoStats.hambre -= 2;
     dracoStats.diversion -= 1;
     dracoStats.energia -= 1;
 
@@ -1264,163 +1262,31 @@ function actualizarStats(){
     actualizarUI();
 }
 
-setInterval(actualizarStats, 1000);
+setInterval(actualizarStats, 5000);
 
-
-limitarStats();
 
 function actualizarUI(){
-
-    limitarStats();
-
     document.getElementById("vida").innerText = dracoStats.vida;
     document.getElementById("hambre").innerText = dracoStats.hambre;
     document.getElementById("diversion").innerText = dracoStats.diversion;
     document.getElementById("energia").innerText = dracoStats.energia;
-
-    let estado = "Draco está feliz 🐶";
-
-    if(dracoStats.vida < 40) estado = "Draco está triste 😢";
-    else if(dracoStats.hambre < 150) estado = "Draco tiene hambre 🍖";
-    else if(dracoStats.diversion < 40) estado = "Draco quiere jugar 🎾";
-    else if(dracoStats.energia < 40) estado = "Draco tiene sueño 😴";
-
-    document.getElementById("estadoDraco").innerText = estado;
 }
-
 
 function alimentar(){
     dracoStats.hambre += 20;
-    if(dracoStats.hambre > 500) dracoStats.hambre = 500;
+    if(dracoStats.hambre > 100) dracoStats.hambre = 100;
     actualizarUI();
 }
 
 function jugar(){
     dracoStats.diversion += 20;
     dracoStats.energia -= 10;
-
-    if(dracoStats.diversion > 100) dracoStats.diversion = 100;
-    if(dracoStats.energia < 0) dracoStats.energia = 0;
-
     actualizarUI();
 }
 
 function dormir(){
     dracoStats.energia += 30;
-
-    if(dracoStats.energia > 100) dracoStats.energia = 100;
-
     actualizarUI();
-}
-
-
-function limitarStats(){
-    dracoStats.vida = Math.max(0, Math.min(100, dracoStats.vida));
-    dracoStats.hambre = Math.max(0, Math.min(500, dracoStats.hambre));
-    dracoStats.diversion = Math.max(0, Math.min(100, dracoStats.diversion));
-    dracoStats.energia = Math.max(0, Math.min(100, dracoStats.energia));
-}
-
-
-
-
-function seleccionar(pieza, num){
-    if(!seleccionada){
-        seleccionada = pieza;
-    } else {
-        let temp = pieza.style.backgroundPosition;
-        pieza.style.backgroundPosition = seleccionada.style.backgroundPosition;
-        seleccionada.style.backgroundPosition = temp;
-        seleccionada = null;
-    }
-}
-
-
-let puntosBeso = 0;
-let tiempoBeso = 15;
-let juegoActivoBeso = false;
-let intervaloCorazones;
-let intervaloTiempo;
-
-function iniciarJuegoBeso(){
-
-    puntosBeso = 0;
-    tiempoBeso = 15;
-    juegoActivoBeso = true;
-
-    document.getElementById("resultadoBeso").innerText = "";
-    document.getElementById("juegoBeso").style.display = "block";
-    actualizarUIBeso();
-
-    intervaloCorazones = setInterval(crearCorazonBeso, 800);
-    intervaloTiempo = setInterval(actualizarTiempoBeso, 1000);
-}
-
-function actualizarUIBeso(){
-    document.getElementById("puntajeBeso").innerText = "💖 " + puntosBeso;
-    document.getElementById("tiempoBeso").innerText = "⏳ " + tiempoBeso;
-}
-
-function actualizarTiempoBeso(){
-    tiempoBeso--;
-    actualizarUIBeso();
-
-    if(tiempoBeso <= 0){
-        terminarJuegoBeso();
-    }
-}
-
-function crearCorazonBeso(){
-
-    if(!juegoActivoBeso) return;
-
-    const corazon = document.createElement("div");
-    corazon.innerHTML = "💖";
-    corazon.style.position = "absolute";
-    corazon.style.left = Math.random() * 90 + "%";
-    corazon.style.top = "-30px";
-    corazon.style.fontSize = "30px";
-    corazon.style.cursor = "pointer";
-
-    corazon.onclick = () => {
-        puntosBeso++;
-        actualizarUIBeso();
-        corazon.remove();
-    };
-
-    document.getElementById("juegoBeso").appendChild(corazon);
-
-    let posicion = 0;
-
-    let caer = setInterval(() => {
-
-        posicion += 4;
-        corazon.style.top = posicion + "px";
-
-        if(posicion > 380){
-            corazon.remove();
-            clearInterval(caer);
-        }
-
-    }, 30);
-}
-
-function terminarJuegoBeso(){
-
-    juegoActivoBeso = false;
-    clearInterval(intervaloCorazones);
-    clearInterval(intervaloTiempo);
-
-    document.getElementById("juegoBeso").style.display = "none";
-
-    if(puntosBeso >= 10){
-        document.getElementById("resultadoBeso").innerHTML =
-        "💋 Vale por un beso desbloqueado 💖";
-        lluviaCorazones();
-    }else{
-        document.getElementById("resultadoBeso").innerHTML =
-        "😜 Casi casi… quiero mi beso otra vez";
-    }
 }
 
 
@@ -1471,27 +1337,11 @@ z-index:3000;
         <h2 style="margin-bottom:15px;">Nuestros recuerdos 💖</h2>
 
         <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
-      	<img src="data/foto1.jpg" class="miniatura">
+            
+            <!-- CAMBIA estas imágenes por fotos reales -->
+	<img src="data/foto1.jpg" class="miniatura">
 	<img src="data/foto2.jpg" class="miniatura">
 	<img src="data/foto3.jpg" class="miniatura">
-	<img src="data/foto4.jpg" class="miniatura">
-	<img src="data/foto5.jpg" class="miniatura">
-	<img src="data/foto6.jpg" class="miniatura">
-	<img src="data/foto7.jpg" class="miniatura">
-	<img src="data/foto8.jpg" class="miniatura">
-	<img src="data/foto9.jpg" class="miniatura">
-	<img src="data/foto10.jpg" class="miniatura">
-	<img src="data/foto11.jpg" class="miniatura">
-	<img src="data/foto12.jpg" class="miniatura">
-	<img src="data/foto13.jpg" class="miniatura">
-	<img src="data/foto14.jpg" class="miniatura">
-	<img src="data/foto15.jpg" class="miniatura">
-	<img src="data/foto16.jpg" class="miniatura">
-	<img src="data/foto17.jpg" class="miniatura">
-	<img src="data/foto18.jpg" class="miniatura">
-	<img src="data/foto19.jpg" class="miniatura">
-	<img src="data/foto20.jpg" class="miniatura">
-	<img src="data/foto21.jpg" class="miniatura">
         </div>
 
     </div>
@@ -1575,25 +1425,6 @@ align-items:center;
         <p id="resultadoFinal"></p>
     </div>
 </div>
-
-<div id="juegoBesoContainer" style="text-align:center; margin-top:40px;">
-
-    <button onclick="iniciarJuegoBeso()">💋 Desbloquear beso</button>
-
-    <div id="juegoBeso" style="display:none; position:relative; width:100%; height:400px; background:#ffe6f0; overflow:hidden; border-radius:20px; margin-top:20px;">
-        <div id="puntajeBeso" style="position:absolute; top:10px; left:10px; font-weight:bold;">
-            💖 0
-        </div>
-
-        <div id="tiempoBeso" style="position:absolute; top:10px; right:10px; font-weight:bold;">
-            ⏳ 15
-        </div>
-    </div>
-
-    <div id="resultadoBeso" style="font-size:22px; margin-top:15px;"></div>
-
-</div>
-
 
 
 </body>
