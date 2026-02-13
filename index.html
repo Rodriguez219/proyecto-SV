@@ -354,6 +354,21 @@ h2{
 }
 
 
+#puzzle{
+    width:300px;
+    height:300px;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.pieza{
+    width:100px;
+    height:100px;
+    border:1px solid white;
+    background-size:300px 300px;
+}
+
+
 </style>
 </head>
 
@@ -585,9 +600,9 @@ No es que no te quiera, es que soy tímida.
 Me gusta mirarte desde lejos, con calma 💛</div>
 </div>
 
-<!-- TEMPORAL -->
-<div class="pet" onclick="toggle('temporal', event); registrarApertura('temporal')">
-<div class="name">Temporal</div>
+<!-- RYUU -->
+<div class="pet" onclick="toggle('ryuu', event); registrarApertura('ryuu')">
+<div class="name">Ryuu</div>
 <div class="face">
 <div class="p"></div><div class="p"></div><div class="g"></div><div class="g"></div><div class="p"></div><div class="p"></div><div class="g"></div><div class="g"></div><div class="p"></div><div class="p"></div>
 
@@ -595,14 +610,18 @@ Me gusta mirarte desde lejos, con calma 💛</div>
 
 <div class="g"></div><div class="y"></div><div class="o"></div><div class="g"></div><div class="g"></div><div class="g"></div><div class="o"></div><div class="y"></div><div class="g"></div><div class="g"></div>
 </div>
-<div id="temporal" class="msg">Soleeee 🐢✨
-Soy Temporal.
+<div id="ryuu" class="msg">Soleeee 🐢✨
+Soy Ryuu.
 Me acerco al vidrio, muevo la cabeza, te miro fijo…
 porque sé que así me das comida.
 Y siempre funciona 😌</div>
 </div>
 
+
+
+
 </div>
+
 
 <!-- LOGRO CONTADOR 0/11 -->
 <div id="logro" style="
@@ -671,6 +690,22 @@ position:fixed;
 <div id="time"></div>
 
 
+
+<div id="tamagotchi">
+    <h2>💘 Draco </h2>
+    <p id="estadoDraco">Draco está feliz 🐶</p>
+
+    <p>❤️ Vida: <span id="vida"></span></p>
+    <p>🍖 Hambre: <span id="hambre"></span></p>
+    <p>🎮 Diversión: <span id="diversion"></span></p>
+    <p>😴 Energía: <span id="energia"></span></p>
+
+    <button onclick="alimentar()">🍖 Alimentar</button>
+    <button onclick="jugar()">🎮 Jugar</button>
+    <button onclick="dormir()">😴 Dormir</button>
+</div>
+
+
 <button onclick="abrirGaleria()" style="
 position:fixed;
 top:20px;
@@ -685,6 +720,10 @@ z-index:1000;
 ">
 📷 Recuerdos
 </button>
+
+
+<h2>🧩 Rompecabezas</h2>
+<div id="puzzle"></div>
 
 
 
@@ -1217,6 +1256,94 @@ function mostrarResultado(){
     document.getElementById("resultadoFinal").innerText =
         "Obtuviste " + puntaje + " de 10.\n" + mensaje;
 }
+
+
+let dracoStats = {
+    vida: 100,
+    hambre: 100,
+    diversion: 100,
+    energia: 100
+};
+
+function actualizarStats(){
+    dracoStats.hambre -= 2;
+    dracoStats.diversion -= 1;
+    dracoStats.energia -= 1;
+
+    if(dracoStats.hambre <= 0 || dracoStats.diversion <= 0){
+        dracoStats.vida -= 2;
+    }
+
+    if(dracoStats.vida <= 0){
+        document.getElementById("estadoDraco").innerText = "Draco está triste 😢";
+    }
+
+    actualizarUI();
+}
+
+setInterval(actualizarStats, 5000);
+
+
+function actualizarUI(){
+    document.getElementById("vida").innerText = dracoStats.vida;
+    document.getElementById("hambre").innerText = dracoStats.hambre;
+    document.getElementById("diversion").innerText = dracoStats.diversion;
+    document.getElementById("energia").innerText = dracoStats.energia;
+}
+
+function alimentar(){
+    dracoStats.hambre += 20;
+    if(dracoStats.hambre > 100) dracoStats.hambre = 100;
+    actualizarUI();
+}
+
+function jugar(){
+    dracoStats.diversion += 20;
+    dracoStats.energia -= 10;
+    actualizarUI();
+}
+
+function dormir(){
+    dracoStats.energia += 30;
+    actualizarUI();
+}
+
+
+let piezas = [];
+let seleccionada = null;
+
+function crearPuzzle(){
+    let puzzle = document.getElementById("puzzle");
+    puzzle.innerHTML = "";
+    piezas = [];
+
+    for(let i=1; i<=9; i++){
+        piezas.push(i);
+    }
+
+    piezas.sort(()=> Math.random() - 0.5);
+
+    piezas.forEach(num => {
+        let pieza = document.createElement("div");
+        pieza.classList.add("pieza");
+        pieza.style.backgroundImage = "url('tuimagen.jpg')";
+        pieza.style.backgroundPosition = calcularPosicion(num);
+        pieza.onclick = ()=> seleccionar(pieza, num);
+        puzzle.appendChild(pieza);
+    });
+}
+
+function seleccionar(pieza, num){
+    if(!seleccionada){
+        seleccionada = pieza;
+    } else {
+        let temp = pieza.style.backgroundPosition;
+        pieza.style.backgroundPosition = seleccionada.style.backgroundPosition;
+        seleccionada.style.backgroundPosition = temp;
+        seleccionada = null;
+    }
+}
+
 
 
 
