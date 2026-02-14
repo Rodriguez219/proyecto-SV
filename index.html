@@ -358,6 +358,55 @@ h2{
     touch-action: manipulation;
 }
 
+#btnPreguntaSecreta{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 18px;
+    background: #ff4da6;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255,0,100,0.6);
+    z-index: 9999;
+    transition: 0.3s;
+}
+
+#btnPreguntaSecreta:hover{
+    transform: scale(1.1);
+}
+
+#modalSecreto{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+#contenidoSecreto{
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    position: relative;
+    width: 300px;
+}
+
+#cerrarSecreto{
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
 
 
 </style>
@@ -927,14 +976,15 @@ function iniciarExperiencia(){
 
     const pantalla = document.getElementById("pantallaInicio");
     const contenido = document.getElementById("contenidoPrincipal");
-
-    iniciarMusica(); // usa tu función que ya hicimos
+           const botonSecreto = document.getElementById("btnPreguntaSecreta");
 
     pantalla.style.opacity = "0";
 
     setTimeout(()=>{
         pantalla.style.display = "none";
         contenido.style.display = "block";
+                      botonSecreto.style.display = "block";
+
     },600);
 }
 
@@ -1233,7 +1283,7 @@ function mostrarResultado(){
     let mensaje = "";
 
     if(puntaje <= 5){
-        mensaje = "😜 Ya veo, solo estas por mi cuerpo y dinero";
+        mensaje = "😔 Ya veo, solo estas por mi cuerpo y dinero verdad?";
     } else if(puntaje <= 9){
         mensaje = "🥰 Me conoces bastante bien";
     } else {
@@ -1448,7 +1498,7 @@ function terminarJuegoBeso(){
 
     if(puntosBeso >= 10){
         document.getElementById("resultadoBeso").innerHTML =
-        "💋 Vale por un beso desbloqueado 💖";
+        "💋 Vale por un beso desbloqueado (Contraseña: quieroun69) 💖";
         lluviaCorazones();
     }else{
         document.getElementById("resultadoBeso").innerHTML =
@@ -1459,6 +1509,55 @@ function terminarJuegoBeso(){
 corazon.classList.add("corazonBeso");
 
 
+function mostrarPreguntaSecreta(){
+    document.getElementById("modalSecreto").style.display = "flex";
+}
+
+function pedirClaveSecreta(){
+    document.getElementById("modalSecreto").style.display = "flex";
+}
+
+function cerrarSecreto(){
+    document.getElementById("modalSecreto").style.display = "none";
+
+    // resetear estado
+    document.getElementById("bloqueClave").style.display = "block";
+    document.getElementById("preguntaOculta").style.display = "none";
+    document.getElementById("inputClaveSecreta").value = "";
+    document.getElementById("errorClaveSecreta").innerText = "";
+}
+
+function verificarClaveSecreta(){
+
+    let clave = document.getElementById("inputClaveSecreta").value;
+    let correcta = "quieroun69"; 
+
+    if(clave === correcta){
+
+        document.getElementById("bloqueClave").style.display = "none";
+        document.getElementById("preguntaOculta").style.display = "block";
+
+    }else{
+        document.getElementById("errorClaveSecreta").innerText =
+        "❌ Contraseña incorrecta";
+    }
+}
+
+function respuestaSiSecreta(){
+
+    let audio = document.getElementById("audioSiSecreto");
+    audio.currentTime = 0;
+    audio.play();
+}
+
+function respuestaNoSecreta(){
+
+    let audio = document.getElementById("audioNoSecreto");
+    audio.currentTime = 0;
+    audio.play();
+}
+
+
 
 
 </script>
@@ -1466,6 +1565,15 @@ corazon.classList.add("corazonBeso");
 <audio id="musica" loop>
     <source src="data/musica.mp3" type="audio/mpeg">
 </audio>
+
+<audio id="audioSiSecreto">
+    <source src="data/si.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="audioNoSecreto">
+    <source src="data/no.mp3" type="audio/mpeg">
+</audio>
+
 
 
 </div>
@@ -1629,6 +1737,35 @@ align-items:center;
     <div id="resultadoBeso" style="font-size:22px; margin-top:15px;"></div>
 
 </div>
+
+<button id="btnPreguntaSecreta" onclick="pedirClaveSecreta()" style="display:none;">
+    🔐 Pregunta Secreta
+</button>
+
+
+
+<div id="modalSecreto" style="display:none;">
+    <div id="contenidoSecreto">
+
+        <span id="cerrarSecreto" onclick="cerrarSecreto()">✖</span>
+
+        <div id="bloqueClave">
+            <h2>🔑 Ingresa la contraseña</h2>
+            <input type="password" id="inputClaveSecreta">
+            <button onclick="verificarClaveSecreta()">Entrar</button>
+            <p id="errorClaveSecreta"></p>
+        </div>
+
+        <div id="preguntaOculta" style="display:none;">
+            <h2>💖 ¿Me amas infinitamente? 💖</h2>
+
+            <button onclick="respuestaSiSecreta()">Sí 💕</button>
+            <button onclick="respuestaNoSecreta()">No 😈</button>
+        </div>
+
+    </div>
+</div>
+
 
 
 
