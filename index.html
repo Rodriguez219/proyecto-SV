@@ -354,6 +354,10 @@ h2{
 }
 
 
+#juegoBeso div {
+    touch-action: manipulation;
+}
+
 
 
 </style>
@@ -814,7 +818,7 @@ if(abiertas.size === totalMascotas && !logroActivado){
     logroActivado = true;
     document.getElementById("logro").style.display = "block";
     lluviaCorazones();
-    setTimeout(mostrarCarta, 1500);
+    setTimeout(mostrarCarta, 10000);
 }
 }
 
@@ -1243,13 +1247,13 @@ function mostrarResultado(){
 
 let dracoStats = {
     vida: 100,
-    hambre: 500,
+    hambre: 200,
     diversion: 100,
     energia: 100
 };
 
 function actualizarStats(){
-    dracoStats.hambre -= 25;
+    dracoStats.hambre -= 3;
     dracoStats.diversion -= 1;
     dracoStats.energia -= 1;
 
@@ -1264,7 +1268,7 @@ function actualizarStats(){
     actualizarUI();
 }
 
-setInterval(actualizarStats, 1000);
+setInterval(actualizarStats, 5000);
 
 
 limitarStats();
@@ -1281,7 +1285,7 @@ function actualizarUI(){
     let estado = "Draco está feliz 🐶";
 
     if(dracoStats.vida < 40) estado = "Draco está triste 😢";
-    else if(dracoStats.hambre < 150) estado = "Draco tiene hambre 🍖";
+    else if(dracoStats.hambre < 40) estado = "Draco tiene hambre 🍖";
     else if(dracoStats.diversion < 40) estado = "Draco quiere jugar 🎾";
     else if(dracoStats.energia < 40) estado = "Draco tiene sueño 😴";
 
@@ -1291,7 +1295,7 @@ function actualizarUI(){
 
 function alimentar(){
     dracoStats.hambre += 20;
-    if(dracoStats.hambre > 500) dracoStats.hambre = 500;
+    if(dracoStats.hambre > 200) dracoStats.hambre = 200;
     actualizarUI();
 }
 
@@ -1316,7 +1320,7 @@ function dormir(){
 
 function limitarStats(){
     dracoStats.vida = Math.max(0, Math.min(100, dracoStats.vida));
-    dracoStats.hambre = Math.max(0, Math.min(500, dracoStats.hambre));
+    dracoStats.hambre = Math.max(0, Math.min(200, dracoStats.hambre));
     dracoStats.diversion = Math.max(0, Math.min(100, dracoStats.diversion));
     dracoStats.energia = Math.max(0, Math.min(100, dracoStats.energia));
 }
@@ -1382,27 +1386,29 @@ function crearCorazonBeso(){
     corazon.style.fontSize = "30px";
     corazon.style.cursor = "pointer";
 
-    corazon.onclick = () => {
-        puntosBeso++;
-        actualizarUIBeso();
-        corazon.remove();
-    };
+corazon.addEventListener("pointerdown", (e) => {
+    e.preventDefault(); // MUY IMPORTANTE en móvil
+    puntosBeso++;
+    actualizarUIBeso();
+    corazon.remove();
+});
+
 
     document.getElementById("juegoBeso").appendChild(corazon);
 
     let posicion = 0;
 
-    let caer = setInterval(() => {
+let caer = setInterval(() => {
 
-        posicion += 4;
-        corazon.style.top = posicion + "px";
+    posicion += 4;
+    corazon.style.top = posicion + "px";
 
-        if(posicion > 380){
-            corazon.remove();
-            clearInterval(caer);
-        }
+    if(posicion > 380){
+        clearInterval(caer);
+        corazon.remove();
+    }
 
-    }, 30);
+}, 30);
 }
 
 function terminarJuegoBeso(){
@@ -1422,6 +1428,9 @@ function terminarJuegoBeso(){
         "😜 Casi casi… quiero mi beso otra vez";
     }
 }
+
+corazon.classList.add("corazonBeso");
+
 
 
 
