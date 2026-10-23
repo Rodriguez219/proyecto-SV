@@ -782,10 +782,18 @@ z-index:1000;
 <script>
 
 function toggle(id, event){
-	  iniciarMusica();
     const el = document.getElementById(id);
-    el.style.display = el.style.display === "block" ? "none" : "block";
-    explosion(event.clientX, event.clientY);
+    if (!el) return;
+
+    // Mostrar u ocultar el mensaje primero, aunque no exista audio.
+    el.style.display = getComputedStyle(el).display === "block" ? "none" : "block";
+
+    // La música es opcional: si no hay un elemento de audio, no debe romper el clic.
+    iniciarMusica();
+
+    if (event && typeof event.clientX === "number" && typeof event.clientY === "number") {
+        explosion(event.clientX, event.clientY);
+    }
 }
 
 
@@ -979,12 +987,18 @@ function cerrarCarta(){
 let musicaIniciada = false;
 
 function iniciarMusica(){
-    if(!musicaIniciada){
-        const musica = document.getElementById("musica");
-        musica.volume = 0.6; // volumen suave
-        musica.play();
-        musicaIniciada = true;
+    if (musicaIniciada) return;
+
+    const musica = document.getElementById("musica");
+    // Si el HTML no incluye música, simplemente continuar sin audio.
+    if (!musica) return;
+
+    musica.volume = 0.6; // volumen suave
+    const reproduccion = musica.play();
+    if (reproduccion && typeof reproduccion.catch === "function") {
+        reproduccion.catch(() => {});
     }
+    musicaIniciada = true;
 }
 
 
@@ -1641,6 +1655,20 @@ z-index:3000;
 	<img src="data/foto19.jpg" class="miniatura">
 	<img src="data/foto20.jpg" class="miniatura">
 	<img src="data/foto21.jpg" class="miniatura">
+	<img src="data/foto22.jpg" class="miniatura">
+	<img src="data/foto23.jpg" class="miniatura">
+	<img src="data/foto24.jpg" class="miniatura">
+	<img src="data/foto25.jpg" class="miniatura">
+	<img src="data/foto26.jpg" class="miniatura">
+	<img src="data/foto27.jpg" class="miniatura">
+	<img src="data/foto28.jpg" class="miniatura">
+	<img src="data/foto29.jpg" class="miniatura">
+	<img src="data/foto30.jpg" class="miniatura">
+	<img src="data/foto31.jpg" class="miniatura">
+	<img src="data/foto32.jpg" class="miniatura">
+	<img src="data/foto33.jpg" class="miniatura">
+	<img src="data/foto34.jpg" class="miniatura">
+	<img src="data/foto35.jpg" class="miniatura">
         </div>
 
     </div>
