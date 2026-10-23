@@ -1514,7 +1514,7 @@ function terminarJuegoBeso(){
 
     if(puntosBeso >= 5){
         document.getElementById("resultadoBeso").innerHTML =
-        "💋 Vale por un beso desbloqueado (Contraseña: quieroun69) 💖";
+        "💋 Vale por un beso desbloqueado (Contraseña: teamomibblocahermosabellasixsevensixseven) 💖";
         lluviaCorazones();
     }else{
         document.getElementById("resultadoBeso").innerHTML =
@@ -1559,37 +1559,27 @@ function verificarClaveSecreta(){
 }
 
 function respuestaSiSecreta(){
-
-    let audio = document.getElementById("audioSiSecreto");
-    audio.currentTime = 0;
-    audio.play();
+    const pregunta = document.getElementById("preguntaOculta");
+    pregunta.innerHTML = `
+        <div style="background:linear-gradient(135deg,#fff0f7,#ffe0ef);border:2px solid #ff8fc7;border-radius:18px;padding:24px 18px;box-shadow:0 8px 24px rgba(230,0,115,.18);">
+            <div style="font-size:42px;margin-bottom:8px;">💍💖</div>
+            <h2 style="color:#e60073;margin:0 0 12px;font-size:27px;">¡VALE POR UN ANILLO!</h2>
+            <p style="font-size:17px;line-height:1.6;margin:0;color:#633b52;">Canjeable por un anillito elegido juntos. Te amo, mi Sole preciosa. 💕</p>
+        </div>`;
 }
 
 function respuestaNoSecreta(){
-
-    let audio = document.getElementById("audioNoSecreto");
-    audio.currentTime = 0;
-    audio.play();
+    // El botón «No» desaparece; solo queda la opción de decir «Sí».
+    const botones = document.querySelectorAll("#preguntaOculta button");
+    botones.forEach((boton) => {
+        if (boton.textContent.includes("No")) boton.remove();
+    });
 }
 
 
 
 
 </script>
-
-<audio id="musica" loop>
-    <source src="data/musica.mp3" type="audio/mpeg">
-</audio>
-
-<audio id="audioSiSecreto">
-    <source src="data/si.mp3" type="audio/mpeg">
-</audio>
-
-<audio id="audioNoSecreto">
-    <source src="data/no.mp3" type="audio/mpeg">
-</audio>
-
-
 
 </div>
 
