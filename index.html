@@ -460,6 +460,71 @@ h2{
 
 
 
+
+
+/* ---------- TIPOGRAFÍA DE CUMPLEAÑOS: ROMÁNTICA Y LEGIBLE ---------- */
+body {
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    color: #633b52;
+    letter-spacing: .15px;
+}
+
+h1, h2, h3, .tituloPrincipal, .name,
+.pantallaAcceso h2, #contenidoSecreto h2 {
+    font-family: "Palatino Linotype", "Book Antiqua", Georgia, serif !important;
+    letter-spacing: .4px;
+}
+
+h1, .tituloPrincipal {
+    font-weight: 700;
+    letter-spacing: .7px;
+}
+
+h2 {
+    line-height: 1.2;
+}
+
+p, button, input, .msg, #contador, #time, #mensajeSorpresa,
+#textoCarta, #logro, #tamagotchi, #resultadoBeso, #pregunta,
+#resultadoFinal, #contenidoSecreto, .pantallaAcceso,
+.foto-contenedor::after {
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif !important;
+}
+
+.name {
+    font-size: 29px;
+    font-weight: 700;
+    letter-spacing: .35px;
+}
+
+.msg {
+    font-size: 18px;
+    line-height: 1.75;
+    color: #67445a;
+    border: 1px solid #f8c8df;
+    box-shadow: 0 8px 24px rgba(157, 75, 114, .12);
+}
+
+button {
+    font-weight: 700;
+    letter-spacing: .2px;
+    transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+}
+
+button:hover {
+    filter: brightness(1.04);
+    box-shadow: 0 5px 14px rgba(230, 0, 115, .18);
+}
+
+#textoCarta {
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+#contador, #time, #mensajeSorpresa {
+    letter-spacing: .25px;
+}
+
 </style>
 </head>
 
@@ -468,7 +533,7 @@ h2{
 <div id="bloqueo">
     <div class="pantallaAcceso">
         <h2>🔐 Acceso exclusivo para Sole ❤️</h2>
-	<h3>¿Dia y mes de nuestro aniversario?</h3>
+	<h3>¿La suma de nuestro dia y mes de aniversario?</h3>
         <input type="password" id="claveInput" placeholder="Ejem: Nuestra fecha ❤️">
         <button onclick="verificarClave()">Entrar</button>
         <p id="errorClave"></p>
@@ -493,7 +558,7 @@ transition:opacity 0.6s ease;
 ">
 
     <h1 style="font-family:cursive;color:#ff4da6;">
-        Nuestra hermosa familia 💖
+        FELIZ CUMPLEAÑOS MI AMOR💖
     </h1>
 
     <button onclick="iniciarExperiencia()" style="
@@ -612,11 +677,6 @@ transition:opacity 0.6s ease;
     <img class="foto-mascota" src="data/mascotas/tortugas.jpg" alt="Nemys y Ryuu" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('sin-foto')">
   </div>
   <div id="tortugas" class="msg">¡Feliz cumpleaños, mamá Sole! 🐢🐢🎂 Somos Nemys y Ryuu. Te mandamos dos saluditos tortuguiles, uno tímido y otro bien curioso. Gracias por cuidarnos, darnos nuestro espacio y llenarnos de cariño. Te deseamos un día hermoso, con muchas sonrisas, abrazos y sorpresas. ¡Te queremos a nuestro ritmo… despacito, pero de todo corazón! 💚💛</div>
-</div>
-  <div class="foto-contenedor" data-placeholder="🐢&#10;Agrega la foto de Ryuu&#10;data/mascotas/ryuu.jpg" aria-label="Foto de Ryuu">
-    <img class="foto-mascota" src="data/mascotas/ryuu.jpg" alt="Ryuu" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('sin-foto')">
-  </div>
-  <div id="ryuu" class="msg">¡Feliz cumpleaños, Soleee! 🐢🎂 Soy Ryuu. Hoy voy a mirarte con mis ojitos más tiernos para recordarte que eres especial para todos nosotros. Gracias por cuidarme y por darme cariño… y sí, si cae algún premio extra por cumpleaños, no me voy a quejar. ¡Que tengas un día hermoso, mamá! 💚</div>
 </div>
 
 </div>
@@ -1007,7 +1067,7 @@ function cambiarFoto(direccion){
 
 function verificarClave(){
     let clave = document.getElementById("claveInput").value;
-    let correcta = "22 de julio"; // tu clave
+    let correcta = "29"; // tu clave
 
     if(clave === correcta){
         mostrarAnimacionCorazon();
@@ -1420,7 +1480,7 @@ function crearCorazonBeso(){
         corazon.remove();
 
         // 🔥 Terminar al llegar a meta
-        if(puntosBeso >= 15){
+        if(puntosBeso >= 5){
             terminarJuegoBeso();
         }
 
@@ -1452,7 +1512,7 @@ function terminarJuegoBeso(){
 
     document.getElementById("juegoBeso").style.display = "none";
 
-    if(puntosBeso >= 10){
+    if(puntosBeso >= 5){
         document.getElementById("resultadoBeso").innerHTML =
         "💋 Vale por un beso desbloqueado (Contraseña: quieroun69) 💖";
         lluviaCorazones();
